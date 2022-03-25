@@ -6,8 +6,8 @@ from .views import *
 router= routers.DefaultRouter()
 
 urlpatterns = [
-    path ('user_detail/user_listing/', views.user_listing),
-    path ('user_detail/UserDetails/<int:pk>/', views.UserDetails, name='UserDetails')
+    path ('user_detail/', UserDetailList.as_view(queryset=user_detail.objects.all(), serializer_class=UserDetailSerializer)),
+    path ('user_detail/<int:pk>/', UserDetailView.as_view(queryset=user_detail.objects.all(), serializer_class=UserDetailSerializer))
 ]
-
+ 
 urlpatterns += router.urls

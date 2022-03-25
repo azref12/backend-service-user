@@ -6,8 +6,10 @@ from .views import *
 router= routers.DefaultRouter()
 
 urlpatterns = [
-    path ('user_recommended/recommended_list/', views.recommended_list),
-    path ('user_recommended/recommended_detail/<int:pk>/', views.recommended_detail)
+    path ('user_recommended/', RecommendedList.as_view(queryset = user_recommended.objects.all(),
+                                                       serializer_class = UserRecommendedSerializer)),
+    path ('user_recommended/<int:pk>/', RecommendedDetail.as_view(queryset = user_recommended.objects.all(),
+                                                                  serializer_class = UserRecommendedSerializer))
 ]
 
 urlpatterns += router.urls 

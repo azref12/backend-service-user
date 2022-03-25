@@ -1,3 +1,4 @@
+from django.contrib import admin
 from rest_framework import routers
 from django.urls import path, include
 from user import views
@@ -15,15 +16,14 @@ from rest_framework_simplejwt.views import (
 router= routers.DefaultRouter()
 
 urlpatterns = [
-    path ('', include(router.urls)),
+    path ('', include (router.urls)),
     path ('token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path ('token/refresh/',TokenRefreshView.as_view(), name='token_refresh'),
     path ('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path ('logout/', LogoutView.as_view(), name='auth_logout'),
-    # path ('user/users/', views.User_list, name='User_list'),
-    # path ('user/user_details/<int:pk>/', views.Users_details, name='Users_details'),
-    path ('user/', UserList.as_view(queryset=User.objects.all(), serializer_class=UserSerializer), name='user-list'),
-    path ('user/<int:pk>/', views.UsersDetail, name='UsersDetail')
+    path ('user/', UserList.as_view(queryset=User.objects.all(), serializer_class=UserSerializer), name='UserList'),
+    path ('user/<int:pk>/', UsersDetail.as_view(queryset=User.objects.all(), serializer_class=UserSerializer), name='UsersDetail')
 ]
+
 
 urlpatterns += router.urls

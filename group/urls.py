@@ -6,8 +6,8 @@ from .views import *
 router= routers.DefaultRouter()
 
 urlpatterns = [
-    path ('group/group_list/', views.group_list),
-    path ('group/group_detail/<int:pk>/', views.group_detail)
+    path ('group/', GroupList.as_view(queryset=group.objects.all(), serializer_class=GroupSerializer)),
+    path ('group/<int:pk>/', GroupDetail.as_view(queryset=group.objects.all(), serializer_class=GroupSerializer))
 ]
 
 urlpatterns += router.urls 
