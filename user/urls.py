@@ -1,7 +1,7 @@
-from django.contrib import admin
 from rest_framework import routers
 from django.urls import path, include
 from user import views
+from user import view_generic
 from .views import *
 from .customejwt import LogoutView, MyTokenObtainPairView
 
@@ -21,8 +21,9 @@ urlpatterns = [
     path ('token/refresh/',TokenRefreshView.as_view(), name='token_refresh'),
     path ('token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path ('logout/', LogoutView.as_view(), name='auth_logout'),
-    path ('user/', UserList.as_view(queryset=User.objects.all(), serializer_class=UserSerializer), name='UserList'),
-    path ('user/<int:pk>/', UsersDetail.as_view(queryset=User.objects.all(), serializer_class=UserSerializer), name='UsersDetail')
+    path ('user/users/', views.User_list, name='User_List'),
+    path ('user/user_details/<int:pk>/', views.Users_details, name='Users_details'),
+    path ('user/', view_generic.UserList.as_view(queryset=User.objects.all(), serializer_class=UserSerializer), name='UserList')
 ]
 
 

@@ -1,6 +1,4 @@
 from django.db import models
-from django.db.models.deletion import CASCADE
-#from rest_framework.authtoken.models import Token
 
 class User (models.Model) :
     id = models.AutoField(primary_key=True) 
