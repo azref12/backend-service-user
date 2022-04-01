@@ -1,6 +1,6 @@
 from django.db import models
 
-class User (models.Model) :
+class Users (models.Model) :
     id = models.AutoField(primary_key=True) 
     first_name = models.CharField(max_length = 100, null = False)
     last_name = models.CharField(max_length = 100, null = False)

@@ -23,7 +23,7 @@ urlpatterns = [
     path ('logout/', LogoutView.as_view(), name='auth_logout'),
     path ('user/users/', views.User_list, name='User_List'),
     path ('user/user_details/<int:pk>/', views.Users_details, name='Users_details'),
-    path ('user/', view_generic.UserList.as_view(queryset=User.objects.all(), serializer_class=UserSerializer), name='UserList')
+    path ('user/', view_generic.UserList.as_view(queryset=Users.objects.all(), serializer_class=UserSerializer), name='UserList')
 ]
 
 

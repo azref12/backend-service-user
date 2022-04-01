@@ -29,7 +29,7 @@ getenv = Config(RepositoryEnv(DOTENV_FILE))
 APP_ID=getenv('APP_ID')
 
 if __name__ == "__main__":
-    print(User.objects.all())
+    print(Users.objects.all())
 
 mastermodel = isfunction
 masterserialzer = isfunction
@@ -42,7 +42,7 @@ def User_list (request):
         try:
                 cek = request.GET['return_url']
                 if  cek == '/users':
-                        mastermodel = User
+                        mastermodel = Users
                         masterserialzer = UserSerializer
                 
         except cek.DoesNotExist:
@@ -55,13 +55,13 @@ def User_list (request):
                                 status=201)
 
         if request.method == 'POST':
-                mastermodel = User
+                mastermodel = Users
                 masterserialzer = UserSerializer
                 localrequest = JSONParser().parse(request)
                 localserializer = masterserialzer(data=localrequest)
                 if localserializer.is_valid():
                         try:
-                                res = User.objects.filter(id).last()
+                                res = Users.objects.filter(id).last()
                                 x = int (res.id)+1
                                 print(x)
                         except :
@@ -72,9 +72,9 @@ def User_list (request):
                                 try:
 
                                         if localserializer.is_valid():
-                                                users = User.objects.filter(id = localrequest['id']).first()
+                                                users = Users.objects.filter(id = localrequest['id']).first()
 
-                                                UserSave = User ( 
+                                                UserSave = Users ( 
                                                                 id = users,
                                                                 first_name=localserializer.data.get("first_name"),
                                                                 last_name=localserializer.data.get("last_name"),
@@ -110,7 +110,7 @@ def Users_details(request, pk):
         try:
                 cek = request.GET['return_url']
                 if  cek == '/user_details':
-                        mastermodel = User
+                        mastermodel = Users
                         masterserialzer = UserSerializer
                 
         except cek.DoesNotExist:

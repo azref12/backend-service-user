@@ -22,8 +22,6 @@ from pathlib import Path
 from decouple import Config ,RepositoryEnv, Csv
 import os
 from rest_framework import generics
-from django.views.generic import ListView, DetailView
-from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 t = datetime.datetime.now()
 
@@ -33,11 +31,11 @@ getenv = Config(RepositoryEnv(DOTENV_FILE))
 APP_ID=getenv('APP_ID')
 
 if __name__ == "__main__":
-    print(User.objects.all())
+    print(Users.objects.all())
     
 
 class UserList (generics.ListCreateAPIView) :
-        queryset = User.objects.all()
+        queryset = Users.objects.all()
         serializer_class = UserSerializer
         DecodedGenerator = api_view
         permission_classes = [AllowAny]
