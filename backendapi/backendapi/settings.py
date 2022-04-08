@@ -95,6 +95,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backendapi.wsgi.application'
 
+CORS_ORIGIN_WHITELIST = [
+    "http://127.0.0.1:8000"
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -157,4 +162,4 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# APP_ID=getenv('APP_ID')
+APP_ID=getenv('APP_ID')
