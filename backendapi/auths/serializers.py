@@ -5,7 +5,7 @@ from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 from rest_framework.response import Response
 from rest_framework import status
-# from account.models import MyAccount
+from account.models import user_detail
 
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -62,3 +62,10 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         user.set_password(validated_data['password'])
         user.save()
+        
+        account = user_detail.objects.create(
+            id_users=user
+        )
+        account.save()
+
+        return user
